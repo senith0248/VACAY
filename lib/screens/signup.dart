@@ -1,6 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:vacaynest_app/screens/login.dart'; 
-class SignUpScreen extends StatelessWidget {
+import 'package:firebase_auth/firebase_auth.dart'; // <--- added
+import 'package:vacaynest_app/screens/login.dart';
+import 'package:vacaynest_app/screens/home.dart';
+
+class SignUpScreen extends StatefulWidget {
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  Future<void> registerUser() async {
+    if (passwordController.text.trim() != confirmPasswordController.text.trim()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Passwords do not match!')),
+      );
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // Navigate to HomeScreen after success
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false,
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,11 +49,10 @@ class SignUpScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.amber),
           onPressed: () {
-         
             Navigator.pushAndRemoveUntil(
-              context, 
-              MaterialPageRoute(builder: (context) => LoginScreen()), 
-              (Route<dynamic> route) => false, 
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+              (Route<dynamic> route) => false,
             );
           },
         ),
@@ -64,6 +101,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             TextField(
+              controller: emailController, // <--- added
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -77,6 +115,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             TextField(
+              controller: passwordController, // <--- added
               obscureText: true,
               decoration: InputDecoration(
                 filled: true,
@@ -91,6 +130,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             TextField(
+              controller: confirmPasswordController, // <--- added
               obscureText: true,
               decoration: InputDecoration(
                 filled: true,
@@ -105,9 +145,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 25),
             ElevatedButton(
-              onPressed: () {
-               
-              },
+              onPressed: registerUser, // <--- connect here!
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.amber,
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
@@ -127,7 +165,6 @@ class SignUpScreen extends StatelessWidget {
                 Text("Already have an account? "),
                 GestureDetector(
                   onTap: () {
-                  
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => LoginScreen()),

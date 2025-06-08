@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vacaynest_app/services/api_service.dart';
 
 class HotelDetailsPage extends StatelessWidget {
   @override
@@ -91,7 +92,7 @@ class HotelDetailsPage extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Row(
-                          children: [
+                          children: const [
                             Text(
                               'See all 140 reviews',
                               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
@@ -111,7 +112,7 @@ class HotelDetailsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
 Row(
-  children: [
+  children: const [
     Icon(Icons.star, color: Colors.amber),
     SizedBox(width: 5),
     Text('8.0', style: TextStyle(fontSize: 16)),
@@ -125,7 +126,7 @@ Text(
   style: TextStyle(fontSize: 14, color: Colors.black87),
 ),
 Row(
-  children: [
+  children: const [
     Icon(Icons.star, color: Colors.amber),
     SizedBox(width: 5),
     Text('8.1', style: TextStyle(fontSize: 16)),

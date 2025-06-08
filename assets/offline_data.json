@@ -1,0 +1,17 @@
+{
+  "offers": [
+    {
+      "id": "1",
+      "title": "Exclusive Online Deal",
+      "description": "Save 25% on your next booking!",
+      "image": "assets/images/offer1.jpeg"
+    },
+    {
+      "id": "2",
+      "title": "Last Minute Getaway",
+      "description": "Flash sale: up to 50% off select destinations!",
+      "image": "assets/images/offer2.jpg"
+    }
+  ],
+  "message": "This data is loaded from a local JSON file. Please connect to the internet for live updates."
+} 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "853669298380",
+    "project_id": "vacaynest-1343c",
+    "storage_bucket": "vacaynest-1343c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853669298380:android:44f51519c3d137e7e9c269",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCwRtv1waAWTo5v7RVnNgWBZg59-MLYcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853669298380:android:dc22e697250d13e4e9c269",
+        "android_client_info": {
+          "package_name": "com.example.vacaynest_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCwRtv1waAWTo5v7RVnNgWBZg59-MLYcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

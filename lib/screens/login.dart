@@ -1,8 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // <--- added
 import 'package:vacaynest_app/screens/signup.dart';
-import 'package:vacaynest_app/screens/home.dart'; 
+import 'package:vacaynest_app/screens/home.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> signInUser() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // Navigate to HomeScreen after success
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false,
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,11 +41,10 @@ class LoginScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.amber),
           onPressed: () {
-           
             Navigator.pushAndRemoveUntil(
-              context, 
-              MaterialPageRoute(builder: (context) => HomeScreen()), 
-              (Route<dynamic> route) => false, 
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+              (Route<dynamic> route) => false,
             );
           },
         ),
@@ -53,6 +80,7 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 30),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -66,6 +94,7 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             TextField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 filled: true,
@@ -91,9 +120,7 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 25),
             ElevatedButton(
-              onPressed: () {
-               
-              },
+              onPressed: signInUser, // Call function here!
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.amber,
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
