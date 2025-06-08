@@ -11,7 +11,7 @@ class FavouriteScreen extends StatelessWidget {
     {
       "name": "Grandbell hotel colombo",
       "rating": "8.7",
-      "image": "https://granbellhotel.lk/wp-content/uploads/2022/03/intro-img-2.webp",
+      "image": "https://granbellhotel.lk/wp-content/uploads/2025/04/Grandbell-Duluxe-Room-2-1720x790-1.jpg",
     },
     {
       "name": "Sheraton hotels colombo",

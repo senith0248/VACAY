@@ -34,6 +34,10 @@ dependencies:
   firebase_auth: ^5.5.4
   http: ^1.1.0
   shared_preferences: ^2.2.3 # Added for local data storage
+  connectivity_plus: ^6.0.1 # Added for network connectivity
+  geolocator: ^11.0.0 # Added for geolocation
+  battery_plus: ^6.2.1 # Updated for battery status
+  sensors_plus: ^5.0.1 # Added for ambient light sensor (and other sensors)
 
  
 
